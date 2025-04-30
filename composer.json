@@ -1,0 +1,14 @@
+{
+    "name": "merkis88/server-php",
+    "description": "server",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "merkis88",
+            "email": "axuenno88@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
