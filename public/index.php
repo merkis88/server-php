@@ -1,13 +1,7 @@
 <?php
-//Включаем запрет на неявное преобразование типов
-declare(strict_types=1);
 
-try {
-    //Создаем экземпляр приложения и запускаем его
-    $app = require_once __DIR__ . '/../core/bootstrap.php';
-    $app->run();
-} catch (\Throwable $exception) {
-    echo '<pre>';
-    print_r($exception);
-    echo '</pre>';
-}
+use Src\Route;
+
+Route::add('go', [Controller\Site::class, 'index']);
+Route::add('hello', [Controller\Site::class, 'hello']);
+Route::add('signup', [Controller\Site::class, 'signup']);
