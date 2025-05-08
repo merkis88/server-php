@@ -40,24 +40,28 @@
         <div class="form-wrapper">
             <form method="post">
                 <div class="form-row">
-                    <label>Введите название</label>
+                    <label>Название</label>
                     <input type="text" name="title" required>
                 </div>
                 <div class="form-row">
-                    <label>Введите автора</label>
+                    <label>Автор</label>
                     <input type="text" name="author" required>
                 </div>
                 <div class="form-row">
-                    <label>Введите год выпуска</label>
+                    <label>Год выпуска</label>
                     <input type="text" name="year" required>
                 </div>
                 <div class="form-row">
-                    <label>Введите ISBN</label>
+                    <label>ISBN</label>
                     <input type="text" name="isbn">
                 </div>
                 <div class="form-row">
-                    <label>Введите описание</label>
+                    <label>Описание</label>
                     <input type="text" name="description">
+                </div>
+                <div class="form-row">
+                    <label>Цена (₽)</label>
+                    <input type="text" name="price">
                 </div>
                 <div class="button-wrap">
                     <button type="submit" class="btn dark">Добавить книгу</button>
@@ -66,6 +70,5 @@
         </div>
     </div>
 </div>
-
 </body>
 </html>

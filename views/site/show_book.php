@@ -3,11 +3,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Книги</title>
+    <title><?= htmlspecialchars($book->title) ?></title>
     <link rel="stylesheet" href="/css/hello.css">
 </head>
 <body>
-
 <div class="wrapper">
     <div class="sidebar">
         <div class="logo">
@@ -33,42 +32,14 @@
             <?php endif; ?>
         </div>
     </div>
-
     <div class="main">
-        <h1>Книги</h1>
-        <div class="table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Автор</th>
-                    <th>Год издания</th>
-                    <th>Статус</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if (!empty($books)): ?>
-                    <?php foreach ($books as $book): ?>
-                        <tr>
-                            <td><a href="/show_book/<?= $book->id ?>" class="book-row"><?= htmlspecialchars($book->title) ?></a></td>
-                            <td><?= htmlspecialchars($book->author) ?></td>
-                            <td><?= htmlspecialchars($book->year) ?></td>
-                            <td><?= ($book->status ?? '—') ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td><a href="#" class="book-row">—</a></td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                <?php endif; ?>
-                </tbody>
-            </table>
-        </div>
+        <h1><?= htmlspecialchars($book->title) ?></h1>
+        <p><strong>Год выпуска:</strong> <?= $book->year ?></p>
+        <p><strong>Автор:</strong> <?= htmlspecialchars($book->author) ?></p>
+        <p><strong>ISBN:</strong> <?= htmlspecialchars($book->isbn) ?></p>
+        <p><strong>Цена:</strong> <?= number_format($book->price, 2) ?> ₽</p>
+        <p><strong>Описание:</strong> <?= nl2br(htmlspecialchars($book->description)) ?></p>
     </div>
 </div>
-
 </body>
 </html>

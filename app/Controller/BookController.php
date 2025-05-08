@@ -16,4 +16,15 @@ class BookController
         }
         return new View('site.new_books');
     }
+
+    public function show_book($id, Request $request): string
+    {
+        $book = Book::find($id);
+
+        if (!$book) {
+            return "Книга не найдена";
+        }
+
+        return new View('site.show_book', ['book' => $book]);
+    }
 }
