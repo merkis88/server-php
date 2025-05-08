@@ -7,6 +7,7 @@ use Model\User;
 use Src\View;
 use Src\Request;
 use Src\Auth\Auth;
+use Model\Book;
 
 class Site
 {
@@ -18,7 +19,8 @@ class Site
 
     public function hello(): string
     {
-        return new View('site.hello', ['message' => 'hello working']);
+        $books = Book::all();
+        return new View('site.hello', ['books' => $books]);
     }
 
     public function signup(Request $request): string
