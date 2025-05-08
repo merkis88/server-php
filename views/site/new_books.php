@@ -3,8 +3,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Книги</title>
+    <title>Добавить книгу</title>
     <link rel="stylesheet" href="/css/hello.css">
+    <link rel="stylesheet" href="/css/new-books.css">
 </head>
 <body>
 
@@ -35,37 +36,33 @@
     </div>
 
     <div class="main">
-        <h1>Книги</h1>
-        <div class="table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Название</th>
-                    <th>Автор</th>
-                    <th>Год издания</th>
-                    <th>Статус</th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php if (!empty($books)): ?>
-                    <?php foreach ($books as $book): ?>
-                        <tr>
-                            <td><a href="/book/<?= $book->id ?>" class="book-row"><?= htmlspecialchars($book->title) ?></a></td>
-                            <td><?= htmlspecialchars($book->author) ?></td>
-                            <td><?= htmlspecialchars($book->year) ?></td>
-                            <td><?= ($book->status ?? '—') ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <tr>
-                        <td><a href="#" class="book-row">—</a></td>
-                        <td>—</td>
-                        <td>—</td>
-                        <td>—</td>
-                    </tr>
-                <?php endif; ?>
-                </tbody>
-            </table>
+        <h1>Добавить новую книгу</h1>
+        <div class="form-wrapper">
+            <form method="post">
+                <div class="form-row">
+                    <label>Введите название</label>
+                    <input type="text" name="title" required>
+                </div>
+                <div class="form-row">
+                    <label>Введите автора</label>
+                    <input type="text" name="author" required>
+                </div>
+                <div class="form-row">
+                    <label>Введите год выпуска</label>
+                    <input type="text" name="year" required>
+                </div>
+                <div class="form-row">
+                    <label>Введите ISBN</label>
+                    <input type="text" name="isbn">
+                </div>
+                <div class="form-row">
+                    <label>Введите описание</label>
+                    <input type="text" name="description">
+                </div>
+                <div class="button-wrap">
+                    <button type="submit" class="btn dark">Добавить книгу</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
