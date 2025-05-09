@@ -3,8 +3,9 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($book->title) ?></title>
+    <title>Добавить читателя</title>
     <link rel="stylesheet" href="/css/hello.css">
+    <link rel="stylesheet" href="/css/new-books.css">
 </head>
 <body>
 <div class="wrapper">
@@ -33,13 +34,36 @@
             <?php endif; ?>
         </div>
     </div>
+
     <div class="main">
-        <h1><?= htmlspecialchars($book->title) ?></h1>
-        <p><strong>Год выпуска:</strong> <?= $book->year ?></p>
-        <p><strong>Автор:</strong> <?= htmlspecialchars($book->author) ?></p>
-        <p><strong>ISBN:</strong> <?= htmlspecialchars($book->isbn) ?></p>
-        <p><strong>Цена:</strong> <?= number_format($book->price, 2) ?> ₽</p>
-        <p><strong>Описание:</strong> <?= nl2br(htmlspecialchars($book->description)) ?></p>
+        <h1>Добавить нового читателя</h1>
+        <div class="form-wrapper">
+            <form method="post">
+                <div class="form-row">
+                    <label>Фамилия</label>
+                    <input type="text" name="lastName" required>
+                </div>
+                <div class="form-row">
+                    <label>Имя</label>
+                    <input type="text" name="firstName" required>
+                </div>
+                <div class="form-row">
+                    <label>Отчество</label>
+                    <input type="text" name="patronymic">
+                </div>
+                <div class="form-row">
+                    <label>Адрес</label>
+                    <input type="text" name="address">
+                </div>
+                <div class="form-row">
+                    <label>Телефон</label>
+                    <input type="text" name="phone">
+                </div>
+                <div class="button-wrap">
+                    <button type="submit" class="btn dark">Добавить читателя</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 </body>

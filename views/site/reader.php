@@ -3,7 +3,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($book->title) ?></title>
+    <title><?= htmlspecialchars($reader->lastName . ' ' . $reader->firstName) ?></title>
     <link rel="stylesheet" href="/css/hello.css">
 </head>
 <body>
@@ -34,12 +34,13 @@
         </div>
     </div>
     <div class="main">
-        <h1><?= htmlspecialchars($book->title) ?></h1>
-        <p><strong>Год выпуска:</strong> <?= $book->year ?></p>
-        <p><strong>Автор:</strong> <?= htmlspecialchars($book->author) ?></p>
-        <p><strong>ISBN:</strong> <?= htmlspecialchars($book->isbn) ?></p>
-        <p><strong>Цена:</strong> <?= number_format($book->price, 2) ?> ₽</p>
-        <p><strong>Описание:</strong> <?= nl2br(htmlspecialchars($book->description)) ?></p>
+        <h1><?= htmlspecialchars($reader->lastName . ' ' . $reader->firstName) ?></h1>
+        <p><strong>Имя:</strong> <?= htmlspecialchars($reader->firstName) ?></p>
+        <p><strong>Фамилия:</strong> <?= htmlspecialchars($reader->lastName) ?></p>
+        <p><strong>Отчество:</strong> <?= htmlspecialchars($reader->patronymic) ?></p>
+        <p><strong>Адрес:</strong> <?= htmlspecialchars($reader->address) ?></p>
+        <p><strong>Телефон:</strong> <?= htmlspecialchars($reader->phone) ?></p>
+        <p><strong>Номер карточки:</strong> <?= $reader->id ?></p>
     </div>
 </div>
 </body>
