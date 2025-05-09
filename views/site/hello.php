@@ -18,7 +18,7 @@
             <li><a href="/hello"><img src="/assets/Widget.svg" alt=""><span>Книги</span></a></li>
             <li><a href="#"><img src="/assets/Chart 2.svg" alt=""><span>Популярные</span></a></li>
             <li><a href="/show_reader"><img src="/assets/User Id.svg" alt=""><span>Читатели</span></a></li>
-            <li><a href="#"><img src="/assets/Unread.svg" alt=""><span>Учёт выдачи</span></a></li>
+            <li><a href="/issued"><img src="/assets/Unread.svg" alt=""><span>Учёт выдачи</span></a></li>
             <li><a href="/new_reader"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые читатели</span></a></li>
             <li><a href="/new_books"><img src="/assets/Vector.svg" alt=""><span>Новые книги</span></a></li>
         </ul>
@@ -40,6 +40,7 @@
             <table>
                 <thead>
                 <tr>
+                    <th>№</th>
                     <th>Название</th>
                     <th>Автор</th>
                     <th>Год издания</th>
@@ -50,6 +51,7 @@
                 <?php if (!empty($books)): ?>
                     <?php foreach ($books as $book): ?>
                         <tr>
+                            <td><?= $book->id ?></td>
                             <td><a href="/show_book/<?= $book->id ?>" class="book-row"><?= htmlspecialchars($book->title) ?></a></td>
                             <td><?= htmlspecialchars($book->author) ?></td>
                             <td><?= htmlspecialchars($book->year) ?></td>
@@ -58,6 +60,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <tr>
+                        <td>—</td>
                         <td><a href="#" class="book-row">—</a></td>
                         <td>—</td>
                         <td>—</td>

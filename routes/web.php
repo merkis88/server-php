@@ -15,3 +15,5 @@ Route::add('GET', '/show_book/{id:\d+}', [Controller\BookController::class, 'sho
 Route::add(['GET', 'POST'], '/new_reader', [Controller\ReaderController::class, 'new_reader']);
 Route::add('GET', '/show_reader', [Controller\ReaderController::class, 'show_reader']);
 Route::add('GET', '/reader/{id:\d+}', [Controller\ReaderController::class, 'readers']);
+
+Route::add(['GET', 'POST'], '/issued', [Controller\ReaderController::class, 'issued']);

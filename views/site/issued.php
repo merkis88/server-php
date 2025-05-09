@@ -3,7 +3,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Добавить читателя</title>
+    <title>Учёт выдачи</title>
     <link rel="stylesheet" href="/css/hello.css">
     <link rel="stylesheet" href="/css/new-books.css">
 </head>
@@ -23,7 +23,6 @@
             <li><a href="/new_books"><img src="/assets/Vector.svg" alt=""><span>Новые книги</span></a></li>
         </ul>
 
-
         <div class="auth-block">
             <?php if (!app()->auth::check()): ?>
                 <a href="/login" class="auth-link">Вход</a>
@@ -36,33 +35,39 @@
     </div>
 
     <div class="main">
-        <h1>Добавить нового читателя</h1>
+        <h1>Учёт выдачи и возврата книг</h1>
+
         <div class="form-wrapper">
             <form method="post">
                 <div class="form-row">
-                    <label>Фамилия</label>
-                    <input type="text" name="lastName" required>
+                    <label>Номер карточки</label>
+                    <input type="number" name="readerID" required>
                 </div>
                 <div class="form-row">
-                    <label>Имя</label>
-                    <input type="text" name="firstName" required>
-                </div>
-                <div class="form-row">
-                    <label>Отчество</label>
-                    <input type="text" name="patronymic">
-                </div>
-                <div class="form-row">
-                    <label>Адрес</label>
-                    <input type="text" name="address">
+                    <label>ФИО</label>
+                    <input type="text" name="fullName" required>
                 </div>
                 <div class="form-row">
                     <label>Телефон</label>
-                    <input type="text" name="phone">
+                    <input type="text" name="phone" required>
+                </div>
+                <div class="form-row">
+                    <label>Название книги</label>
+                    <input type="text" name="bookTitle" required>
+                </div>
+                <div class="form-row">
+                    <label>ID книги</label>
+                    <input type="number" name="bookID" required>
                 </div>
                 <div class="button-wrap">
-                    <button type="submit" class="btn dark">Добавить читателя</button>
+                    <button type="submit" name="action" value="issue" class="btn dark">Выдать книгу</button>
+                    <button type="submit" name="action" value="return" class="btn dark">Принять книгу</button>
                 </div>
             </form>
+
+            <?php if (!empty($message)): ?>
+                <p style="margin-top: 20px;"><strong><?= htmlspecialchars($message) ?></strong></p>
+            <?php endif; ?>
         </div>
     </div>
 </div>

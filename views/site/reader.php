@@ -17,11 +17,10 @@
             <li><a href="/hello"><img src="/assets/Widget.svg" alt=""><span>Книги</span></a></li>
             <li><a href="#"><img src="/assets/Chart 2.svg" alt=""><span>Популярные</span></a></li>
             <li><a href="/show_reader"><img src="/assets/User Id.svg" alt=""><span>Читатели</span></a></li>
-            <li><a href="#"><img src="/assets/Unread.svg" alt=""><span>Учёт выдачи</span></a></li>
+            <li><a href="/issued"><img src="/assets/Unread.svg" alt=""><span>Учёт выдачи</span></a></li>
             <li><a href="/new_reader"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые читатели</span></a></li>
             <li><a href="/new_books"><img src="/assets/Vector.svg" alt=""><span>Новые книги</span></a></li>
         </ul>
-
 
         <div class="auth-block">
             <?php if (!app()->auth::check()): ?>
@@ -33,6 +32,7 @@
             <?php endif; ?>
         </div>
     </div>
+
     <div class="main">
         <h1><?= htmlspecialchars($reader->lastName . ' ' . $reader->firstName) ?></h1>
         <p><strong>Имя:</strong> <?= htmlspecialchars($reader->firstName) ?></p>
@@ -41,6 +41,30 @@
         <p><strong>Адрес:</strong> <?= htmlspecialchars($reader->address) ?></p>
         <p><strong>Телефон:</strong> <?= htmlspecialchars($reader->phone) ?></p>
         <p><strong>Номер карточки:</strong> <?= $reader->id ?></p>
+
+        <?php if (count($issuedBooks) > 0): ?>
+            <h2>Выданные книги</h2>
+            <div class="table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Дата выдачи</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($issuedBooks as $item): ?>
+                        <tr>
+                            <td><?= htmlspecialchars($item->book->title ?? '—') ?></td>
+                            <td><?= htmlspecialchars($item->issuedDate) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php else: ?>
+            <h2>Выданных книг нет</h2>
+        <?php endif; ?>
     </div>
 </div>
 </body>
