@@ -25,10 +25,17 @@ class Site
 
     public function signup(Request $request): string
     {
-        if ($request->method === 'POST' && User::create($request->all())) {
-            app()->route->redirect('/go');
+        $message = '';
+        if ($request->method === 'POST') {
+            $data = $request->all();
+            $data['password'] = md5($data['password']);
+            $data['roleID'] = 2; // по умолчанию библиотекарь
+
+            \Model\User::create($data);
+            app()->route->redirect('/login');
         }
-        return new View('site.signup');
+
+        return (string) new \Src\View('site.signup', ['message' => $message]);
     }
 
 

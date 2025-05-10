@@ -13,18 +13,23 @@ class User extends Model implements IdentityInterface
 
     public $timestamps = false;
     protected $fillable = [
-        'name',
+        'lastName',
+        'firstName',
+        'patronymic',
+        'phone',
         'login',
-        'password'
+        'password',
+        'roleID',
+        'name'
     ];
 
-    protected static function booted()
-    {
-        static::created(function ($user) {
-            $user->password = md5($user->password);
-            $user->save();
-        });
-    }
+//    protected static function booted()
+//    {
+//        static::created(function ($user) {
+//            $user->password = md5($user->password);
+//            $user->save();
+//        });
+//    }
 
     //Выборка пользователя по первичному ключу
     public function findIdentity(int $id)
