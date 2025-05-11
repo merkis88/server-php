@@ -21,19 +21,25 @@
             <li><a href="/issued"><img src="/assets/Unread.svg" alt=""><span>Учёт выдачи</span></a></li>
             <li><a href="/new_reader"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые читатели</span></a></li>
             <li><a href="/new_books"><img src="/assets/Vector.svg" alt=""><span>Новые книги</span></a></li>
-            <li><a href="/new_librarian"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые библиотекари</span></a></li>
+            <?php if (app()->auth::check() && app()->auth->user()->roleID === 1): ?>
+                <li><a href="/new_librarian">
+                        <img src="/assets/User Plus Rounded.svg" alt="">
+                        <span>Новые библиотекари</span>
+                    </a></li>
+            <?php endif; ?>
+
         </ul>
 
         <div class="auth-block">
-            <?php if (!app()->auth::check()): ?>
-                <a href="/login" class="auth-link">Вход</a>
-                <a href="/signup" class="auth-link">Регистрация</a>
-            <?php else: ?>
-                <p class="auth-user"><?= app()->auth->user()->name ?></p>
-                <a href="/logout" class="auth-link">Выход</a>
-            <?php endif; ?>
-        </div>
+        <?php if (!app()->auth::check()): ?>
+            <a href="/login" class="auth-link">Вход</a>
+            <a href="/signup" class="auth-link">Регистрация</a>
+        <?php else: ?>
+            <p class="auth-user"><?= app()->auth->user()->name ?></p>
+            <a href="/logout" class="auth-link">Выход</a>
+        <?php endif; ?>
     </div>
+</div>
 
     <div class="main">
         <h1>Книги</h1>

@@ -37,6 +37,12 @@
     <div class="main">
         <h1>Добавление библиотекаря</h1>
 
+        <?php if (!empty($message)): ?>
+            <p style="color: #333; background: #e0e0e0; padding: 10px 20px; border-radius: 10px; margin-bottom: 20px;">
+                <?= htmlspecialchars($message) ?>
+            </p>
+        <?php endif; ?>
+
         <div class="main-content-flex">
             <div class="form-wrapper">
                 <form method="post">
@@ -70,8 +76,8 @@
                 </form>
             </div>
 
-
             <div class="librarian-wrapper">
+                <h2>Список библиотекарей</h2>
                 <div class="librarian-list">
                     <table>
                         <thead>
@@ -89,8 +95,8 @@
                                 <td><?= htmlspecialchars($user->login) ?></td>
                                 <td><?= htmlspecialchars($user->phone) ?></td>
                                 <td>
-                                    <form method="post" action="/delete_librarian" onsubmit="return confirm('Удалить?');">
-                                        <input type="hidden" name="id" value="<?= $user->id ?>">
+                                    <form method="post">
+                                        <input type="hidden" name="delete_id" value="<?= $user->id ?>">
                                         <button type="submit" class="btn dark">Удалить</button>
                                     </form>
                                 </td>

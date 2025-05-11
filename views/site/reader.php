@@ -20,7 +20,13 @@
             <li><a href="/issued"><img src="/assets/Unread.svg" alt=""><span>Учёт выдачи</span></a></li>
             <li><a href="/new_reader"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые читатели</span></a></li>
             <li><a href="/new_books"><img src="/assets/Vector.svg" alt=""><span>Новые книги</span></a></li>
-            <li><a href="/new_librarian"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые библиотекари</span></a></li>
+            <?php if (app()->auth::check() && app()->auth->user()->roleID === 1): ?>
+                <li><a href="/new_librarian">
+                        <img src="/assets/User Plus Rounded.svg" alt="">
+                        <span>Новые библиотекари</span>
+                    </a></li>
+            <?php endif; ?>
+
         </ul>
 
         <div class="auth-block">
