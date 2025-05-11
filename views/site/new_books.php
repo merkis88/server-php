@@ -12,7 +12,7 @@
 <div class="wrapper">
     <div class="sidebar">
         <div class="logo">
-            <img src="/assets/Notebook Bookmark.svg" alt="Library logo">
+            <img src="/assets/Notebook Bookmark.svg" alt="Логотип библиотеки">
             <span>LIBRARY</span>
         </div>
         <ul class="menu">
@@ -23,14 +23,9 @@
             <li><a href="/new_reader"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые читатели</span></a></li>
             <li><a href="/new_books"><img src="/assets/Vector.svg" alt=""><span>Новые книги</span></a></li>
             <?php if (app()->auth::check() && app()->auth->user()->roleID === 1): ?>
-                <li><a href="/new_librarian">
-                        <img src="/assets/User Plus Rounded.svg" alt="">
-                        <span>Новые библиотекари</span>
-                    </a></li>
+                <li><a href="/new_librarian"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые библиотекари</span></a></li>
             <?php endif; ?>
-
         </ul>
-
 
         <div class="auth-block">
             <?php if (!app()->auth::check()): ?>
@@ -46,7 +41,8 @@
     <div class="main">
         <h1>Добавить новую книгу</h1>
         <div class="form-wrapper">
-            <form method="post">
+            <form method="post" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="<?= app()->auth::generateCSRF() ?>">
                 <div class="form-row">
                     <label>Название</label>
                     <input type="text" name="title" required>
@@ -71,10 +67,18 @@
                     <label>Цена (₽)</label>
                     <input type="text" name="price">
                 </div>
+                <div class="form-row">
+                    <label>Обложка</label>
+                    <input type="file" name="image" accept="image/*">
+                </div>
                 <div class="button-wrap">
                     <button type="submit" class="btn dark">Добавить книгу</button>
                 </div>
             </form>
+
+            <?php if (!empty($message)): ?>
+                <p style="margin-top: 20px;"><strong><?= htmlspecialchars($message) ?></strong></p>
+            <?php endif; ?>
         </div>
     </div>
 </div>

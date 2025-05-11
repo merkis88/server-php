@@ -19,9 +19,14 @@ class Site
 
     public function hello(): string
     {
-        $books = Book::all();
+        $query = $_GET['search'] ?? '';
+        $books = $query
+            ? Book::where('title', 'like', '%' . $query . '%')->get()
+            : Book::all();
+
         return new View('site.hello', ['books' => $books]);
     }
+
 
     public function signup(Request $request): string
     {

@@ -43,6 +43,10 @@
 
     <div class="main">
         <h1>Книги</h1>
+        <form method="get" style="margin-bottom: 20px;">
+            <input type="text" name="search" placeholder="Поиск по названию..." value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+            <button type="submit" class="btn dark">Найти</button>
+        </form>
         <div class="table">
             <table>
                 <thead>

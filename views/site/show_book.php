@@ -10,7 +10,7 @@
 <div class="wrapper">
     <div class="sidebar">
         <div class="logo">
-            <img src="/assets/Notebook Bookmark.svg" alt="Library logo">
+            <img src="/assets/Notebook Bookmark.svg" alt="Логотип библиотеки">
             <span>LIBRARY</span>
         </div>
         <ul class="menu">
@@ -26,9 +26,7 @@
                         <span>Новые библиотекари</span>
                     </a></li>
             <?php endif; ?>
-
         </ul>
-
 
         <div class="auth-block">
             <?php if (!app()->auth::check()): ?>
@@ -40,9 +38,19 @@
             <?php endif; ?>
         </div>
     </div>
+
     <div class="main">
         <h1><?= htmlspecialchars($book->title) ?></h1>
-        <p><strong>Год выпуска:</strong> <?= $book->year ?></p>
+
+        <?php
+        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/public/uploads/' . $book->image;
+        if (!empty($book->image) && file_exists($imagePath)): ?>
+            <img src="/uploads/<?= htmlspecialchars($book->image) ?>" alt="Обложка книги" style="max-width:200px; margin-bottom:20px;">
+        <?php else: ?>
+            <p>Обложка не загружена.</p>
+        <?php endif; ?>
+
+        <p><strong>Год выпуска:</strong> <?= htmlspecialchars($book->year) ?></p>
         <p><strong>Автор:</strong> <?= htmlspecialchars($book->author) ?></p>
         <p><strong>ISBN:</strong> <?= htmlspecialchars($book->isbn) ?></p>
         <p><strong>Цена:</strong> <?= number_format($book->price, 2) ?> ₽</p>
