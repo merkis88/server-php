@@ -9,29 +9,14 @@
 
 <div class="register-container">
     <h2>Регистрация нового пользователя</h2>
-    <h3><?= $message ?? ''; ?></h3>
+    <pre><?= $message ?? ''; ?></pre>
     <form method="post">
-        <label>Фамилия
-            <input type="text" name="lastName" required>
-        </label>
-        <label>Имя
-            <input type="text" name="firstName" required>
-        </label>
-        <label>Отчество
-            <input type="text" name="patronymic">
-        </label>
-        <label>Телефон
-            <input type="text" name="phone">
-        </label>
-        <label>Логин
-            <input type="text" name="login" required>
-        </label>
-        <label>Пароль
-            <input type="password" name="password" required>
-        </label>
-        <button type="submit">Зарегистрироваться</button>
+        <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+        <label>Имя <input type="text" name="name"></label>
+        <label>Логин <input type="text" name="login"></label>
+        <label>Пароль <input type="password" name="password"></label>
+        <button>Зарегистрироваться</button>
     </form>
-
 </div>
 
 </body>

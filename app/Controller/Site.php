@@ -3,11 +3,11 @@
 namespace Controller;
 
 use Model\Post;
-use Model\User;
 use Src\View;
 use Src\Request;
 use Src\Auth\Auth;
 use Model\Book;
+use Src\Validator\Validator;
 
 class Site
 {
@@ -25,18 +25,29 @@ class Site
 
     public function signup(Request $request): string
     {
-        $message = '';
         if ($request->method === 'POST') {
-            $data = $request->all();
-            $data['password'] = md5($data['password']);
-            $data['roleID'] = 2; // по умолчанию библиотекарь
 
-            \Model\User::create($data);
-            app()->route->redirect('/login');
+            $validator = new Validator($request->all(), [
+                'name' => ['required'],
+                'login' => ['required', 'unique:users,login'],
+                'password' => ['required']
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if($validator->fails()){
+                return new View('site.signup',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]);
+            }
+
+            if (User::create($request->all())) {
+                app()->route->redirect('/login');
+            }
         }
-
-        return (string) new \Src\View('site.signup', ['message' => $message]);
+        return new View('site.signup');
     }
+
 
 
 
@@ -59,4 +70,6 @@ class Site
         Auth::logout();
         app()->route->redirect('/hello');
     }
+
+
 }
