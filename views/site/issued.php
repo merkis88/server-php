@@ -46,6 +46,7 @@
 
         <div class="form-wrapper">
             <form method="post">
+                <input type="hidden" name="csrf_token" value="<?= app()->auth::generateCSRF() ?>">
                 <div class="form-row">
                     <label>Номер карточки</label>
                     <input type="number" name="readerID" required>

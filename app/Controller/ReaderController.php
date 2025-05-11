@@ -6,14 +6,34 @@ use Model\Reader;
 use Src\View;
 use Src\Request;
 use Model\Issued;
-use Model\Book;
+use Src\Validator\ValidationManager;
+use Validators\RequireValidator;
+use Validators\OnlyLettersValidator;
+use Validators\OnlyDigitsValidator;
+
 
 class ReaderController
 {
     public function new_reader(Request $request): string
     {
+        $message = '';
+
         if ($request->method === 'POST') {
-            Reader::create($request->all());
+            $data = $request->all();
+
+            $validator = new ValidationManager();
+            $isValid = $validator->validate($data, [
+                'lastName' => [RequireValidator::class, OnlyLettersValidator::class],
+                'firstName' => [RequireValidator::class, OnlyLettersValidator::class],
+                'phone' => [OnlyDigitsValidator::class]
+            ]);
+
+            if (!$isValid) {
+                return new View('site.new_reader', ['errors' => $validator->errors()]);
+            }
+
+            // Если валидация прошла — сохранить пользователя
+            Reader::create($data);
             app()->route->redirect('/show_reader');
         }
 
@@ -85,7 +105,4 @@ class ReaderController
 
         return new View('site.issued', ['message' => $message]);
     }
-
-
-
 }

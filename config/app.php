@@ -10,7 +10,9 @@ return [
     ],
     'validators' => [
         'required' => \Validators\RequireValidator::class,
-        'unique' => \Validators\UniqueValidator::class
+        'unique' => \Validators\UniqueValidator::class,
+        'onlyLetters' => \Validators\OnlyLettersValidator::class,
+        'onlyDigits' => \Validators\OnlyDigitsValidator::class,
     ],
     'routeAppMiddleware' => [
         'csrf' => \Middlewares\CSRFMiddleware::class,
