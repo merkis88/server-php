@@ -16,7 +16,6 @@
         </div>
         <ul class="menu">
             <li><a href="/hello"><img src="/assets/Widget.svg" alt=""><span>Книги</span></a></li>
-            <li><a href="#"><img src="/assets/Chart 2.svg" alt=""><span>Популярные</span></a></li>
             <li><a href="/show_reader"><img src="/assets/User Id.svg" alt=""><span>Читатели</span></a></li>
             <li><a href="/issued"><img src="/assets/Unread.svg" alt=""><span>Учёт выдачи</span></a></li>
             <li><a href="/new_reader"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые читатели</span></a></li>
@@ -27,7 +26,6 @@
                         <span>Новые библиотекари</span>
                     </a></li>
             <?php endif; ?>
-
         </ul>
 
         <div class="auth-block">
@@ -47,36 +45,39 @@
         <div class="form-wrapper">
             <form method="post">
                 <input type="hidden" name="csrf_token" value="<?= app()->auth::generateCSRF() ?>">
+
                 <div class="form-row">
-                    <label>Номер карточки</label>
-                    <input type="number" name="readerID" required>
+                    <label>Выбрать пользователя</label>
+                    <select name="readerID" required>
+                        <option value="">Выберите</option>
+                        <?php foreach ($readers as $reader): ?>
+                            <option value="<?= $reader->id ?>" <?= isset($foundReader) && $foundReader->id == $reader->id ? 'selected' : '' ?>>
+                                <?= $reader->lastName ?> <?= $reader->firstName ?> (ID: <?= $reader->id ?>)
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
+
                 <div class="form-row">
-                    <label>ФИО</label>
-                    <input type="text" name="fullName" required>
+                    <label>Выбрать книгу</label>
+                    <select name="bookID" required>
+                        <option value="">Выберите</option>
+                        <?php foreach ($books as $book): ?>
+                            <option value="<?= $book->id ?>"><?= $book->title ?></option>
+                        <?php endforeach; ?>
+                    </select>
                 </div>
-                <div class="form-row">
-                    <label>Телефон</label>
-                    <input type="text" name="phone" required>
-                </div>
-                <div class="form-row">
-                    <label>Название книги</label>
-                    <input type="text" name="bookTitle" required>
-                </div>
-                <div class="form-row">
-                    <label>ID книги</label>
-                    <input type="number" name="bookID" required>
-                </div>
+
                 <div class="button-wrap">
-                    <button type="submit" name="action" value="issue" class="btn dark">Выдать книгу</button>
-                    <button type="submit" name="action" value="return" class="btn dark">Принять книгу</button>
+                    <button type="submit" name="action" value="issue" class="btn dark">Выдать</button>
+                    <button type="submit" name="action" value="return" class="btn dark">Вернуть</button>
                 </div>
             </form>
-
-            <?php if (!empty($message)): ?>
-                <p style="margin-top: 20px;"><strong><?= htmlspecialchars($message) ?></strong></p>
-            <?php endif; ?>
         </div>
+
+        <?php if (!empty($message)): ?>
+            <p style="margin-top: 20px;"><strong><?= htmlspecialchars($message) ?></strong></p>
+        <?php endif; ?>
     </div>
 </div>
 </body>

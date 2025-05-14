@@ -17,7 +17,7 @@
         </div>
         <ul class="menu">
             <li><a href="/hello"><img src="/assets/Widget.svg" alt=""><span>Книги</span></a></li>
-            <li><a href="#"><img src="/assets/Chart 2.svg" alt=""><span>Популярные</span></a></li>
+<!--            <li><a href="#"><img src="/assets/Chart 2.svg" alt=""><span>Популярные</span></a></li>-->
             <li><a href="/show_reader"><img src="/assets/User Id.svg" alt=""><span>Читатели</span></a></li>
             <li><a href="/issued"><img src="/assets/Unread.svg" alt=""><span>Учёт выдачи</span></a></li>
             <li><a href="/new_reader"><img src="/assets/User Plus Rounded.svg" alt=""><span>Новые читатели</span></a></li>

@@ -45,7 +45,6 @@ class BookController
         if (!$book) {
             return "Книга не найдена";
         }
-
         return new View('site.show_book', ['book' => $book]);
     }
 
