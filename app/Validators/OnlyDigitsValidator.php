@@ -10,6 +10,6 @@ class OnlyDigitsValidator extends AbstractValidator
 
     public function rule(): bool
     {
-        return preg_match('/^\d+$/', (string)$this->value);
+        return preg_match('/^[\d\-\s]+$/', (string)$this->value);
     }
 }

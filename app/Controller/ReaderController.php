@@ -10,7 +10,7 @@ use Src\Request;
 use Validators\RequireValidator;
 use Validators\OnlyDigitsValidator;
 use Validators\OnlyLettersValidator;
-
+use Src\Validator\ValidationManager;
 
 
 class ReaderController
@@ -22,7 +22,7 @@ class ReaderController
         if ($request->method === 'POST') {
             $data = $request->all();
 
-            $validator = new \Src\Validator\ValidationManager();
+            $validator = new ValidationManager();
             $isValid = $validator->validate($data, [
                 'lastName' => [RequireValidator::class, OnlyLettersValidator::class],
                 'firstName' => [RequireValidator::class, OnlyLettersValidator::class],
@@ -30,7 +30,10 @@ class ReaderController
             ]);
 
             if (!$isValid) {
-                return new View('site.new_reader', ['errors' => $validator->errors()]);
+                return new View('site.new_reader', [
+                    'errors' => $validator->errors(),
+                    'message' => 'Ошибка валидации'
+                ]);
             }
 
             Reader::create($data);

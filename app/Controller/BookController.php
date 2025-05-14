@@ -5,6 +5,11 @@ namespace Controller;
 use Model\Book;
 use Src\View;
 use Src\Request;
+use Validators\RequireValidator;
+use Validators\OnlyDigitsValidator;
+use Validators\OnlyLettersValidator;
+use Src\Validator\ValidationManager;
+
 
 class BookController
 {
@@ -14,6 +19,23 @@ class BookController
 
         if ($request->method === 'POST') {
             $data = $request->all();
+
+            $validator = new ValidationManager();
+            $isValid = $validator->validate($data, [
+                'title' => [RequireValidator::class, OnlyLettersValidator::class],
+                'author' => [RequireValidator::class, OnlyLettersValidator::class],
+                'year' => [RequireValidator::class, OnlyDigitsValidator::class],
+                'price' => [RequireValidator::class, OnlyDigitsValidator::class],
+                'isbn' => [RequireValidator::class, OnlyDigitsValidator::class],
+                'description' => [RequireValidator::class],
+            ]);
+
+            if (!$isValid) {
+                return (string)new View('site.new_books', [
+                    'errors' => $validator->errors(),
+                    'message' => 'Ошибка валидации'
+                ]);
+            }
 
             // Обработка загрузки файла
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
