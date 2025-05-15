@@ -46,6 +46,7 @@
         <div class="main-content-flex">
             <div class="form-wrapper">
                 <form method="post">
+                    <input type="hidden" name="csrf_token" value="<?= app()->auth::generateCSRF() ?>">
                     <div class="form-row">
                         <label>Фамилия</label>
                         <input type="text" name="lastName" required>

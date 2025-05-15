@@ -10,8 +10,6 @@ class OnlyLettersValidator extends AbstractValidator
 
     public function rule(): bool
     {
-        return preg_match('/^[\p{L}\p{N}\s.,:;!?()"\-–—\'«»„“’]+$/u', trim((string)$this->value)) === 1;
-
-
+        return preg_match('/^[\p{L}\s\-]+$/u', trim((string)$this->value)) === 1;
     }
 }
