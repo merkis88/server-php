@@ -6,9 +6,9 @@ use Model\User;
 use Src\Request;
 use Src\View;
 use Src\Validator\ValidationManager;
-use Validators\OnlyLettersValidator;
+use Validator\OnlyLettersValidator;
+use Validator\PhoneValidator;
 use Validators\RequireValidator;
-use Validators\PhoneValidator;
 
 class UserController
 {

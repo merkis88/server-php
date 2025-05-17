@@ -8,8 +8,9 @@ use Model\Issued;
 use Src\View;
 use Src\Request;
 use Validators\RequireValidator;
-use Validators\OnlyDigitsValidator;
-use Validators\OnlyLettersValidator;
+use Validator\OnlyLettersValidator;
+use Validator\OnlyDigitsValidator;
+use Validator\PhoneValidator;
 use Src\Validator\ValidationManager;
 
 
@@ -26,7 +27,7 @@ class ReaderController
             $isValid = $validator->validate($data, [
                 'lastName' => [RequireValidator::class, OnlyLettersValidator::class],
                 'firstName' => [RequireValidator::class, OnlyLettersValidator::class],
-                'phone' => [OnlyDigitsValidator::class]
+                'phone' => [OnlyDigitsValidator::class, PhoneValidator::class]
             ]);
 
             if (!$isValid) {

@@ -6,8 +6,8 @@ use Model\Book;
 use Src\View;
 use Src\Request;
 use Validators\RequireValidator;
-use Validators\OnlyDigitsValidator;
-use Validators\OnlyLettersValidator;
+use Validator\OnlyDigitsValidator;
+use Validator\OnlyLettersValidator;
 use Src\Validator\ValidationManager;
 
 
