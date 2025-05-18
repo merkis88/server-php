@@ -11,16 +11,20 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.4 | ^8.0",
+        "php": "^7.4 || ^8.0",
         "illuminate/database": "12.x-dev",
         "illuminate/events": "12.x-dev",
         "nikic/fast-route": "^2.0@dev",
-        "merkis88/validator": "dev-main"
+        "merkis88/validator": "dev-main",
+        "merkis88/collect": "dev-main"
     },
     "autoload": {
         "psr-4": {
             "Src\\": "core/Src/",
             "": "app/"
-        }
+        },
+        "files": [
+            "core/helpers.php"
+        ]
     }
 }

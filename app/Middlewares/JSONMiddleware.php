@@ -2,28 +2,23 @@
 
 namespace Middlewares;
 
-use Exception;
 use Src\Request;
-use Src\Session;
-use function Collect\collection;
+use function Collect\collection; // 👈 ДОБАВЬ ЭТО
 
 class JSONMiddleware
 {
     public function handle(Request $request): Request
     {
-        if ($request->method === 'GET') {
+        if ($request->method !== 'POST') {
             return $request;
         }
 
-        //Получаем неструктурированные json данные и преобразуем их в массив
         $data = json_decode(file_get_contents("php://input"), true) ?? [];
 
-        //Массив сливаем в request
-        collection($data)->each(function ($item, $key, $request) {
-            $request->set($key, $item);
-        }, $request);
+        collection($data)->each(function ($value, $key) use ($request) {
+            $request->set($key, $value);
+        });
 
         return $request;
     }
 }
-
