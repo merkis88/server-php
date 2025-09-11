@@ -41,7 +41,7 @@ class BookController
             if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
                 $file = $_FILES['image'];
                 $filename = time() . '_' . basename($file['name']);
-                $destination = $_SERVER['DOCUMENT_ROOT'] . '/public/uploads/' . $filename;
+                $destination = __DIR__ . '/../../public/uploads/' . $filename;
 
                 if (move_uploaded_file($file['tmp_name'], $destination)) {
                     $data['image'] = $filename;

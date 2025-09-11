@@ -97,6 +97,7 @@
                                 <td><?= htmlspecialchars($user->phone) ?></td>
                                 <td>
                                     <form method="post">
+                                        <input type="hidden" name="csrf_token" value="<?= app()->auth::generateCSRF() ?>">
                                         <input type="hidden" name="delete_id" value="<?= $user->id ?>">
                                         <button type="submit" class="btn dark">Удалить</button>
                                     </form>

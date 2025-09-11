@@ -43,7 +43,7 @@
         <h1><?= htmlspecialchars($book->title) ?></h1>
 
         <?php
-        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/public/uploads/' . $book->image;
+        $imagePath = __DIR__ . '/../../uploads/' . $book->image;
         if (!empty($book->image) && file_exists($imagePath)): ?>
             <img src="/uploads/<?= htmlspecialchars($book->image) ?>" alt="Обложка книги" style="max-width:200px; margin-bottom:20px;">
         <?php else: ?>
