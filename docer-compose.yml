@@ -2,9 +2,7 @@ version: '3.8'
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     container_name: php-app
     volumes:
       - .:/var/www/html
@@ -27,4 +25,6 @@ services:
     container_name: certbot
     volumes:
       - ./certbot/conf:/etc/letsencrypt
-      - .:/var/www/html
+      - ./certbot/www:/var/www/certbot
+      -
+    command: sleep 1d
