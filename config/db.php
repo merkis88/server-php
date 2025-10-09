@@ -1,10 +1,11 @@
 <?php
+
 return [
     'driver' => 'mysql',
-    'host' => 'localhost',
+    'host' => 'db',
     'database' => 'mvc',
-    'username' => 'root',
-    'password' => '',
+    'username' => 'user',
+    'password' => 'password',
     'charset' => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix' => '',
